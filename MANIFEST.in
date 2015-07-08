@@ -1,0 +1,3 @@
+include versioneer.py
+include revmut/_version.py
+include *.rst LICENSE.txt

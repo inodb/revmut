@@ -1,0 +1,2 @@
+biopython==1.65
+-e git://github.com/counsyl/hgvs.git@aebe5bd9683f4b5937fd653ce4b13fcd4f3ebb10#egg=pyhgvs
