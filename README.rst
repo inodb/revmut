@@ -27,6 +27,7 @@ Installation
 Run
 ---
 ::
+
     usage: revmut [-h] [--version] vcf oncotator_file fasta
 
     Check if a mutation is reverted
