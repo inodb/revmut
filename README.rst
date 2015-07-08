@@ -47,13 +47,13 @@ Example
 -------
 To be reverted mutations like:
 
-- `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`
+- `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`_
 
 Oncotator MAF Putative revertant mutations like:
 
-- `tests/test_data/oncotator.del.maf.txt <tests/test_data/oncotator.del.maf.txt>`
+- `tests/test_data/oncotator.del.maf.txt <tests/test_data/oncotator.del.maf.txt>`_
 
-Check if given mutations are in a bam file::
+Check if given mutations are revertant::
 
     revmut tests/test_data/to_be_reverted_mutations.txt \
            tests/test_data/oncotator.del.maf.txt \
