@@ -1,3 +1,5 @@
+.. image:: https://travis-ci.org/inodb/revmut.svg?branch=master 
+  :target: https://travis-ci.org/inodb/revmut
 REVertant MUTation finder (REVMUT)
 ==================================
 
