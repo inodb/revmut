@@ -39,3 +39,32 @@ Run
     optional arguments:
     -h, --help      show this help message and exit
     --version       show program's version number and exit
+
+Example
+-------
+To be reverted mutations like:
+
+- `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`
+
+Oncotator MAF Putative revertant mutations like:
+
+- `tests/test_data/oncotator.del.maf.txt <tests/test_data/oncotator.del.maf.txt>`
+
+Check if given mutations are in a bam file::
+
+    revmut tests/test_data/to_be_reverted_mutations.txt \
+           tests/test_data/oncotator.del.maf.txt \
+           tests/test_data/BRCA_transcripts.fa \
+           2> example/revmut.log
+
+Output:
+
+- `example/revmut.log <example/revmut.log>`_
+ 
+Developers
+----------
+Tests
+~~~~~
+In root dir run::
+
+    nosetests

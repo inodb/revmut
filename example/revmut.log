@@ -1,0 +1,283 @@
+/home/debruiji/git/revmut/test-env/lib/python2.7/site-packages/Bio/Seq.py:2040: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.
+  BiopythonWarning)
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.68_69delAG')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5576delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 38
+INFO:root:putative revertant length: 38
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.68_69delAG')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1970delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 38
+INFO:root:putative revertant length: 38
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.68_69delAG')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1672delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 38
+INFO:root:putative revertant length: 38
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.68_69delAG')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3264delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 38
+INFO:root:putative revertant length: 38
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.68_69delAG')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2384delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 38
+INFO:root:putative revertant length: 38
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3908dupT')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5580delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1306
+INFO:root:putative revertant length: 1306
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3908dupT')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1972delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1306
+INFO:root:putative revertant length: 699
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3908dupT')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1674delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1306
+INFO:root:putative revertant length: 570
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3908dupT')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3266delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1306
+INFO:root:putative revertant length: 1107
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3908dupT')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2386delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1306
+INFO:root:putative revertant length: 801
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.4844delC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5577delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1631
+INFO:root:putative revertant length: 1631
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.4844delC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1972delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1631
+INFO:root:putative revertant length: 699
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.4844delC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1674delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1631
+INFO:root:putative revertant length: 570
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.4844delC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3266delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1631
+INFO:root:putative revertant length: 1107
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.4844delC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2386delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1631
+INFO:root:putative revertant length: 801
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.181T>G')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5578delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1863
+INFO:root:putative revertant length: 1863
+INFO:root:---
+INFO:root:REVERTANT MUTATION FOUND ZOMG
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.181T>G')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1972delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1863
+INFO:root:putative revertant length: 699
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.181T>G')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1674delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1863
+INFO:root:putative revertant length: 570
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.181T>G')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3266delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1863
+INFO:root:putative revertant length: 1107
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.181T>G')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2386delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1863
+INFO:root:putative revertant length: 801
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.2722G>T')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5578delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 907
+INFO:root:putative revertant length: 907
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.2722G>T')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1972delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 907
+INFO:root:putative revertant length: 699
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.2722G>T')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1674delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 907
+INFO:root:putative revertant length: 570
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.2722G>T')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3266delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 907
+INFO:root:putative revertant length: 907
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.2722G>T')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2386delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 907
+INFO:root:putative revertant length: 801
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3047_3048insTGAGA')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5583delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1024
+INFO:root:putative revertant length: 1024
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3047_3048insTGAGA')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1972delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1024
+INFO:root:putative revertant length: 699
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3047_3048insTGAGA')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1674delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1024
+INFO:root:putative revertant length: 570
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3047_3048insTGAGA')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3271delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1024
+INFO:root:putative revertant length: 1024
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.3047_3048insTGAGA')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2386delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1024
+INFO:root:putative revertant length: 801
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.5266dupC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.5580delC')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1764
+INFO:root:putative revertant length: 1764
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.5266dupC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1972delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1764
+INFO:root:putative revertant length: 699
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.5266dupC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.1674delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1764
+INFO:root:putative revertant length: 570
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.5266dupC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.3266delT')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1764
+INFO:root:putative revertant length: 1107
+INFO:root:---
+INFO:root:---
+INFO:root:mutation: HGVSName('ENST00000357654:c.5266dupC')
+INFO:root:putative revertant mutation: HGVSName('ENST00000357654.3:c.2386delA')
+INFO:root:transcript: ENST00000357654
+INFO:root:normal length: 1863
+INFO:root:mutation length: 1764
+INFO:root:putative revertant length: 801
+INFO:root:---
