@@ -26,3 +26,16 @@ Installation
 
 Run
 ---
+::
+    usage: revmut [-h] [--version] vcf oncotator_file fasta
+
+    Check if a mutation is reverted
+
+    positional arguments:
+    vcf             VCF with mutation to be reverted
+    oncotator_file  MAF to find mutations in
+    fasta           Fasta file with transcripts
+
+    optional arguments:
+    -h, --help      show this help message and exit
+    --version       show program's version number and exit

@@ -3,7 +3,8 @@ Check if a mutation is reverted
 """
 import argparse
 import sys
-from . import oncotator
+import revmut
+from revmut import oncotator
 import logging
 
 import pyhgvs as hgvs
@@ -124,7 +125,7 @@ def main():
     parser.add_argument("vcf", type=str, help="VCF with mutation to be reverted")
     parser.add_argument("oncotator_file", type=str, help="MAF to find mutations in")
     parser.add_argument("fasta", type=str, help="Fasta file with transcripts")
-    parser.add_argument("--version", action='version', version=sufam.__version__)
+    parser.add_argument("--version", action='version', version=revmut.__version__)
     args = parser.parse_args()
     check_revertant_mutations(args.vcf, args.oncotator_file, args.fasta)
 

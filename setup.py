@@ -36,7 +36,7 @@ setup(name='revmut',
                         ],
       entry_points={
           'console_scripts': [
-              'revmut = revmut/revertant_mutation_checker.py:main'
+              'revmut = revmut.revertant_mutation_checker:main'
           ]
       },
       )
