@@ -14,16 +14,16 @@ setup(name='revmut',
       description="REVertant MUTation finder",
       long_description=read("README.rst"),
       classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Science/Research',
-        'Natural Language :: English',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-        'Topic :: Software Development :: Libraries :: Python Modules'
+          'Development Status :: 2 - Pre-Alpha',
+          'Intended Audience :: Science/Research',
+          'Natural Language :: English',
+          'License :: OSI Approved :: MIT License',
+          'Operating System :: OS Independent',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
+          'Topic :: Software Development :: Libraries :: Python Modules'
       ],
       keywords='Python revertant mutation finder HGVS',
       author='Ino de Bruijn',
@@ -32,8 +32,12 @@ setup(name='revmut',
       license="MIT",
       include_package_data=True,
       packages=find_packages(exclude=['test*']),
-      install_requires=['biopython>=1.65'
-                        ],
+      install_requires=['pandas>=0.16.1',
+                        'biopython>=1.65'
+      ],
+      dependency_links=[
+          'https://github.com/counsyl/hgvs/archive/aebe5bd9683f4b5937fd653ce4b13fcd4f3ebb10.zip#egg=pyhgvs'
+      ],
       entry_points={
           'console_scripts': [
               'revmut = revmut.revertant_mutation_checker:main'
