@@ -13,7 +13,7 @@ TMP_BASENAME_DIR = ospj(TMP_DIR_PATH, "validation")
 PKG_PATH = ospj(TEST_DIR_PATH, '..')
 
 sys.path.append(PKG_PATH)
-from revmut.find_mutations import find_revertant_mutations
+from revmut.finder import find_revertant_mutations
 from revmut import utils
 
 
