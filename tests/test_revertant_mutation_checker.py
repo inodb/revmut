@@ -45,16 +45,24 @@ class TestRevertantMutation(object):
 
     def test_revertant_mutation_checker_del(self):
         # TODO: check correct revertant, this just runs the whole script
-        revertant_mutation_checker.check_revertant_mutations(
+        out = StringIO()
+        revertant_mutation_checker.print_revertant_mutations_info(
             ospj(DATA_PATH, "to_be_reverted_mutations.txt"),
             ospj(DATA_PATH, "oncotator.del.maf.txt"),
-            ospj(DATA_PATH, "BRCA_transcripts.fa")
+            ospj(DATA_PATH, "BRCA_transcripts.fa"),
+            revmuts_file_format='oncotator',
+            outfile=out
         )
+        assert_equals(open(ospj(DATA_PATH, "output", "oncotator.del.maf.out.tsv")).read(), out.getvalue())
 
     def test_revertant_mutation_checker_ins(self):
         # TODO: check correct revertant, this just runs the whole script
-        revertant_mutation_checker.check_revertant_mutations(
+        out = StringIO()
+        revertant_mutation_checker.print_revertant_mutations_info(
             ospj(DATA_PATH, "to_be_reverted_mutations.txt"),
             ospj(DATA_PATH, "oncotator.ins.maf.txt"),
-            ospj(DATA_PATH, "BRCA_transcripts.fa")
+            ospj(DATA_PATH, "BRCA_transcripts.fa"),
+            revmuts_file_format='oncotator',
+            outfile=out
         )
+        assert_equals(open(ospj(DATA_PATH, "output", "oncotator.ins.maf.out.tsv")).read(), out.getvalue())

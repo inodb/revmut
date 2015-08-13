@@ -4,11 +4,41 @@ Check if a mutation is reverted
 import argparse
 import sys
 import revmut
-from revmut import oncotator
 import logging
+from revmut import oncotator
+from revmut.utils import deprecated
 
 import pyhgvs as hgvs
 from Bio import SeqIO
+
+
+class RevertantMutationsInfo(object):
+    def __init__(self, transcript_record, hgvs_mut):
+        self.record = transcript_record
+        self.mut = hgvs_mut
+        self.normal_p = self.record.seq.translate(to_stop=True)
+        self.mut_p = apply_hgvs(self.record.seq, hgvs_mut).translate(to_stop=True)
+        self.revmuts = []
+        self.revmuts_p = []
+
+    def add_revmut(self, hgvs_revmut):
+        assert(len(self.revmuts) == len(self.revmuts_p))
+        self.revmuts += [hgvs_revmut]
+        self.revmuts_p += [apply_hgvs(apply_hgvs(self.record.seq, self.mut), hgvs_revmut).translate(to_stop=True)]
+
+    def to_tsv(self, header=True):
+        assert(len(self.revmuts) == len(self.revmuts_p))
+        rv = ""
+        if header:
+            rv += "mut\trevmut\ttranscript\tnormal_protein_length\tmut_protein_length\trevmut_protein_length\n"
+        rv += "\n".join(["\t".join(["{}"]*6).format(self.mut, self.revmuts[i], self.record.id,
+                         len(self.normal_p), len(self.mut_p),
+                         len(self.revmuts_p[i])) for i in
+                         range(len(self.revmuts))]) + "\n"
+        return rv
+
+    def __len__(self):
+        return len(self.revmuts)
 
 
 def alter_coords_hgvs_sequential(h1, h2):
@@ -88,6 +118,7 @@ def apply_hgvs(seq, h):
         raise(Exception("Only cDNA mutations have been implemented"))
 
 
+@deprecated
 def is_revertant(record, hgvs_mut, hgvs_rev_mut):
     normal_p = record.seq.translate(to_stop=True)
     mut_p = apply_hgvs(record.seq, hgvs_mut).translate(to_stop=True)
@@ -103,15 +134,45 @@ def is_revertant(record, hgvs_mut, hgvs_rev_mut):
     return len(normal_p) == len(revmut_p)
 
 
-def check_revertant_mutations(vcf, oncotator_file, fasta):
-    ot = oncotator.Oncotator(oncotator_file)
+def parse_hgvs_muts_file(hgvs_muts_file, raise_exception=True):
+    hgvs_muts = []
+    for m in [l.rstrip('\n') for l in open(hgvs_muts_file).readlines()]:
+        if raise_exception:
+            hgvs_mut = hgvs.HGVSName(m)
+            hgvs_muts += [hgvs_mut]
+        else:
+            try:
+                hgvs_mut = hgvs.HGVSName(m)
+                hgvs_muts += [hgvs_mut]
+            except hgvs.InvalidHGVSName:
+                sys.stderr.write("Invalid HGVS found: {}\n".format(m))
+                pass
+    return hgvs_muts
+
+
+def print_revertant_mutations_info(hgvs_muts_file, revmuts_file, fasta, revmuts_file_format='hgvs', outfile=sys.stdout):
+    assert(revmuts_file_format in ['hgvs', 'oncotator'])
+
+    hgvs_muts = parse_hgvs_muts_file(hgvs_muts_file)
+    if revmuts_file_format == 'hgvs':
+        hgvs_revmuts = parse_hgvs_muts_file(revmuts_file)
+    elif revmuts_file_format == 'oncotator':
+        ot = oncotator.Oncotator(revmuts_file)
     transcripts = SeqIO.to_dict(SeqIO.parse(fasta, "fasta"))
 
-    for m in [l.rstrip('\n') for l in open(vcf).readlines()]:
-        hgvs_mut = hgvs.HGVSName(m)
-        for hgvs_rev_mut in ot.get_hgvs_mutations(hgvs_mut.transcript):
-            if is_revertant(transcripts[hgvs_mut.transcript], hgvs_mut, alter_coords_hgvs_sequential(hgvs_mut, hgvs_rev_mut)):
-                logging.info("REVERTANT MUTATION FOUND ZOMG")
+    print_header = True
+    for m in hgvs_muts:
+        rmi = RevertantMutationsInfo(transcripts[m.transcript], m)
+
+        if revmuts_file_format == 'oncotator':
+            hgvs_revmuts = ot.get_hgvs_mutations(m.transcript)
+
+        for rm in hgvs_revmuts:
+            rmi.add_revmut(rm)
+
+        if len(rmi) > 0:
+            outfile.write(rmi.to_tsv(header=print_header))
+            print_header = False
 
 
 def main():
@@ -122,12 +183,13 @@ def main():
     )
     parser = argparse.ArgumentParser(description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("vcf", type=str, help="VCF with mutation to be reverted")
-    parser.add_argument("oncotator_file", type=str, help="MAF to find mutations in")
+    parser.add_argument("hgvs_muts_file", type=str, help="File with one mutation per line in HGVS format TRANSCRIPT_ID:c.HGVS_MUT")
+    parser.add_argument("revmuts_file", type=str, help="File with one putative revertant mutation per line in HGVS format TRANSCRIPT_ID:c.HGVS_MUT")
     parser.add_argument("fasta", type=str, help="Fasta file with transcripts")
     parser.add_argument("--version", action='version', version=revmut.__version__)
+    parser.add_argument("--revmuts_file_format", type=str, choices=["hgvs", "oncotator"], default="hgvs", help="Set revmuts_file format")
     args = parser.parse_args()
-    check_revertant_mutations(args.vcf, args.oncotator_file, args.fasta)
+    print_revertant_mutations_info(args.hgvs_muts_file, args.revmuts_file, args.fasta, input_format=args.revmuts_file_format, outfile=sys.stdout)
 
 
 if __name__ == "__main__":
