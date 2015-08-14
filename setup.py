@@ -33,14 +33,16 @@ setup(name='revmut',
       include_package_data=True,
       packages=find_packages(exclude=['test*']),
       install_requires=['pandas>=0.16.1',
-                        'biopython>=1.65'
+                        'biopython>=1.65',
+                        'sufam==0.4',
       ],
       dependency_links=[
           'https://github.com/counsyl/hgvs/archive/aebe5bd9683f4b5937fd653ce4b13fcd4f3ebb10.zip#egg=pyhgvs'
       ],
       entry_points={
           'console_scripts': [
-              'revmut = revmut.revertant_mutation_checker:main'
+              'revmut-finder = revmut.finder:main'
+              'revmut-checker = revmut.revertant_mutation_checker:main'
           ]
       },
       )
