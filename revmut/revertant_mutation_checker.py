@@ -164,10 +164,15 @@ def print_revertant_mutations_info(hgvs_muts_file, revmuts_file, fasta, revmuts_
     for m in hgvs_muts:
         rmi = RevertantMutationsInfo(transcripts[m.transcript], m)
 
+        # get only mutations for given transcript, version id postfix is ignored
         if revmuts_file_format == 'oncotator':
-            hgvs_revmuts = ot.get_hgvs_mutations(m.transcript)
+            hgvs_revmuts_t = ot.get_hgvs_mutations(m.transcript)
+        else:
+            hgvs_revmuts_t = [rm for rm in hgvs_revmuts
+                if m.transcript == rm.transcript or
+                   m.transcript == ".".join(rm.transcript.split(".")[:-1])]
 
-        for rm in hgvs_revmuts:
+        for rm in hgvs_revmuts_t:
             rmi.add_revmut(rm)
 
         if len(rmi) > 0:
