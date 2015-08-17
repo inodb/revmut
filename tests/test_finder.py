@@ -3,7 +3,10 @@ import sys
 import os
 from nose.tools import ok_, assert_equals
 import numpy as np
+from numpy.testing import assert_array_almost_equal
 from os.path import join as ospj
+import pandas as pd
+from pandas.util.testing import assert_frame_equal
 
 FILE_PATH = os.path.realpath(__file__)
 TEST_DIR_PATH = os.path.dirname(FILE_PATH)
@@ -36,4 +39,9 @@ class TestRevertantMutation(object):
         normal_bam = ospj(DATA_PATH, "N1.bam")
 
         find_revertant_mutations(reffa, mutations_tsv, search_bam, normal_bam, out)
-        assert_equals(open(ospj(DATA_PATH, "output", "T1_test.tsv")).read(), out.getvalue())
+        out.seek(0)
+        test = pd.read_csv(out, sep="\t")
+        truth = pd.read_csv(ospj(DATA_PATH, "output", "T1_test.tsv"), sep="\t")
+        assert_frame_equal(truth.drop("MAF", axis=1),
+                           test.drop("MAF", axis=1))
+        assert_array_almost_equal(truth.MAF, test.MAF, decimal=6)
