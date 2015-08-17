@@ -7,7 +7,7 @@ install:
   - cd samtools-1.2
   - make 
   - cd ..
-  - export PATH="$HOME/samtools-1.2:$PATH"
+  - export PATH="samtools-1.2:$PATH"
   - case "$TRAVIS_PYTHON_VERSION" in
     2*)
       wget http://repo.continuum.io/miniconda/Miniconda-3.4.2-Linux-x86_64.sh -O miniconda.sh;
