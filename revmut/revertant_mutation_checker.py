@@ -19,19 +19,22 @@ class RevertantMutationsInfo(object):
         self.normal_p = self.record.seq.translate(to_stop=True)
         self.mut_p = apply_hgvs(self.record.seq, hgvs_mut).translate(to_stop=True)
         self.revmuts = []
+        self.revmuts_pos_adj = []
         self.revmuts_p = []
 
     def add_revmut(self, hgvs_revmut):
         assert(len(self.revmuts) == len(self.revmuts_p))
         self.revmuts += [hgvs_revmut]
-        self.revmuts_p += [apply_hgvs(apply_hgvs(self.record.seq, self.mut), hgvs_revmut).translate(to_stop=True)]
+        hgvs_revmut_pos_adj = alter_coords_hgvs_sequential(self.mut, hgvs_revmut)
+        self.revmuts_pos_adj += [hgvs_revmut_pos_adj]
+        self.revmuts_p += [apply_hgvs(apply_hgvs(self.record.seq, self.mut), hgvs_revmut_pos_adj).translate(to_stop=True)]
 
     def to_tsv(self, header=True):
         assert(len(self.revmuts) == len(self.revmuts_p))
         rv = ""
         if header:
-            rv += "mut\trevmut\ttranscript\tnormal_protein_length\tmut_protein_length\trevmut_protein_length\n"
-        rv += "\n".join(["\t".join(["{}"]*6).format(self.mut, self.revmuts[i], self.record.id,
+            rv += "mut\trevmut\trevmut_pos_adj\ttranscript\tnormal_protein_length\tmut_protein_length\trevmut_protein_length\n"
+        rv += "\n".join(["\t".join(["{}"]*7).format(self.mut, self.revmuts[i], self.revmuts_pos_adj[i], self.record.id,
                          len(self.normal_p), len(self.mut_p),
                          len(self.revmuts_p[i])) for i in
                          range(len(self.revmuts))]) + "\n"
