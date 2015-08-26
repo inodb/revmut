@@ -48,39 +48,39 @@ def alter_coords_hgvs_sequential(h1, h2):
     """Change HGVS coords of h2 after applying h1"""
     if h1.kind == "c" and h2.kind == "c":
         if h1.mutation_type == ">":
-            h3 = h2
+            h3 = hgvs.HGVSName(h2.name)
         elif h1.mutation_type == "del":
             if h1.cdna_start.coord > h2.cdna_end.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
             elif h1.cdna_end.coord < h2.cdna_start.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
                 h3.cdna_start = hgvs.CDNACoord(coord=h3.cdna_start.coord-len(h1.ref_allele))
                 h3.cdna_end = hgvs.CDNACoord(coord=h3.cdna_end.coord-len(h1.ref_allele))
             else:
                 raise(Exception("Overlapping del not implemented"))
         elif h1.mutation_type == "ins":
             if h1.cdna_start.coord > h2.cdna_end.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
             elif h1.cdna_end.coord < h2.cdna_start.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
                 h3.cdna_start = hgvs.CDNACoord(coord=h3.cdna_start.coord+len(h1.alt_allele))
                 h3.cdna_end = hgvs.CDNACoord(coord=h3.cdna_end.coord+len(h1.alt_allele))
             else:
                 raise(Exception("Overlapping ins not implemented"))
         elif h1.mutation_type == "dup":
             if h1.cdna_start.coord > h2.cdna_end.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
             elif h1.cdna_end.coord < h2.cdna_start.coord:
-                h3 = h2
-                h3.cdna_start = hgvs.CDNACoord(coord=h3.cdna_start.coord+len(h1.alt_allele))
-                h3.cdna_end = hgvs.CDNACoord(coord=h3.cdna_end.coord+len(h1.alt_allele))
+                h3 = hgvs.HGVSName(h2.name)
+                h3.cdna_start = hgvs.CDNACoord(coord=h3.cdna_start.coord+len(h1.alt_allele)-len(h1.ref_allele))
+                h3.cdna_end = hgvs.CDNACoord(coord=h3.cdna_end.coord+len(h1.alt_allele)-len(h1.ref_allele))
             else:
                 raise(Exception("Overlapping dup not implemented"))
         elif h1.mutation_type == "delins":
             if h1.cdna_start.coord > h2.cdna_end.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
             elif h1.cdna_end.coord < h2.cdna_start.coord:
-                h3 = h2
+                h3 = hgvs.HGVSName(h2.name)
                 h3.cdna_start = hgvs.CDNACoord(coord=h3.cdna_start.coord-len(h1.ref_allele)+len(h1.alt_allele))
                 h3.cdna_end = hgvs.CDNACoord(coord=h3.cdna_end.coord-len(h1.ref_allele)+len(h1.alt_allele))
             else:
@@ -109,7 +109,8 @@ def apply_hgvs(seq, h):
             assert(len(seq) + len(h.alt_allele) == len(new_seq))
         elif h.mutation_type == "dup":
             assert(seq[start:end+1] == h.ref_allele)
-            new_seq = seq[:end+1] + h.alt_allele + seq[end+1:]
+            new_seq = seq[:start] + h.alt_allele + seq[end+1:]
+            assert(len(seq) - len(h.ref_allele) + len(h.alt_allele) == len(new_seq))
         elif h.mutation_type == "delins":
             assert(seq[start:end+1] == h.ref_allele)
             new_seq = seq[:start] + h.alt_allele + seq[end+1:]
