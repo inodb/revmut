@@ -41,8 +41,8 @@ setup(name='revmut',
       ],
       entry_points={
           'console_scripts': [
-              'revmut-finder = revmut.finder:main'
-              'revmut-checker = revmut.revertant_mutation_checker:main'
+              'revmut-find = revmut.find:main'
+              'revmut-verify = revmut.verify:main'
           ]
       },
       )
