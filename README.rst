@@ -27,10 +27,10 @@ Find
 The finding module takes a mutation and finds
 PRMs that:
 
-  - Delete the entire given mutation
-  - Restore the reading frame in case the given mutation (GM) is an indel. The criterium is::
+- Delete the entire given mutation
+- Restore the reading frame in case the given mutation (GM) is an indel. The criterium is::
   
-      length(PRM) +/- length(GM) % 3 == 0
+    length(PRM) +/- length(GM) % 3 == 0
   
 Run with::
 
@@ -41,8 +41,8 @@ Run with::
   
 View input/output files:
 
-  - `tests/test_data/germline_mutations/T1_test_mutation.tsv <tests/test_data/germline_mutations/T1_test_mutation.tsv>`_
-  - `tests/test_data/output/T1_test.tsv <tests/test_data/output/T1_test.tsv>`_
+- `tests/test_data/germline_mutations/T1_test_mutation.tsv <tests/test_data/germline_mutations/T1_test_mutation.tsv>`_
+- `tests/test_data/output/T1_test.tsv <tests/test_data/output/T1_test.tsv>`_
 
 
 Annotate
@@ -61,15 +61,10 @@ Run with::
   
 View input/output files:
   
-  - `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`_
-  - `tests/test_data/oncotator.ins.txt <tests/test_data/oncotator.ins.txt>`_
-  - `tests/test_data/oncotator.ins.maf.out.tsv <tests/test_data/oncotator.ins.maf.out.tsv>`_
+- `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`_
+- `tests/test_data/oncotator.ins.txt <tests/test_data/oncotator.ins.txt>`_
+- `tests/test_data/oncotator.ins.maf.out.tsv <tests/test_data/oncotator.ins.maf.out.tsv>`_
 
-Run
-~~~
-
-
- 
 Developers
 ----------
 Tests
