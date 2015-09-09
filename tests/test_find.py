@@ -30,7 +30,7 @@ class TestRevertantMutation(object):
         """remove temp output files"""
         utils.rm_rf(TMP_DIR_PATH)
 
-    def test_revertant_mutation_finder(self):
+    def test_find(self):
         out = StringIO()
 
         reffa = ospj(DATA_PATH, "human_g1k_v37_chr17.fa")
