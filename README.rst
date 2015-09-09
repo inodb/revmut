@@ -5,7 +5,7 @@ REVertant MUTation finder (REVMUT)
 REVertant MUTation finder (REVMUT) can help to **find** and **verify**
 putative revertant mutations (PRMs). Common workflow is:
 
-1. **Find** PRMs (deletions of given mutations, indels that restore the reading frame)
+1. **Find** PRMs (deletions of given mutation, indels that restore the reading frame)
 2. **Annotatote** PRMs with Oncotator to get transcript change of putative
    revertant mutations in HGVS format 
 3. **Verify** if one of the transcript change in HGVS format is revertant by looking
