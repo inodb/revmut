@@ -34,7 +34,10 @@ class RevertantMutationsInfo(object):
         rv = ""
         if header:
             rv += "mut\trevmut\trevmut_pos_adj\ttranscript\tnormal_protein_length\tmut_protein_length\trevmut_protein_length\n"
-        rv += "\n".join(["\t".join(["{}"]*7).format(self.mut, self.revmuts[i], self.revmuts_pos_adj[i], self.record.id,
+        rv += "\n".join(["\t".join(["{}"]*7).format(self.mut.name.split(":")[1],
+                                                    self.revmuts[i].name.split(":")[1],
+                                                    self.revmuts_pos_adj[i].name.split(":")[1],
+                                                    self.record.id,
                          len(self.normal_p), len(self.mut_p),
                          len(self.revmuts_p[i])) for i in
                          range(len(self.revmuts))]) + "\n"
@@ -198,7 +201,7 @@ def main():
     parser.add_argument("--version", action='version', version=revmut.__version__)
     parser.add_argument("--revmuts_file_format", type=str, choices=["hgvs", "oncotator"], default="hgvs", help="Set revmuts_file format")
     args = parser.parse_args()
-    print_revertant_mutations_info(args.hgvs_muts_file, args.revmuts_file, args.fasta, input_format=args.revmuts_file_format, outfile=sys.stdout)
+    print_revertant_mutations_info(args.hgvs_muts_file, args.revmuts_file, args.fasta, revmuts_file_format=args.revmuts_file_format, outfile=sys.stdout)
 
 
 if __name__ == "__main__":
