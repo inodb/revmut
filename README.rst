@@ -10,7 +10,7 @@ REVMUT can help to **find** and **verify** putative revertant mutations (PRMs). 
 3. **Verify** if one of the transcript change in HGVS format is revertant by looking
    how the length of the protein changes
 
-This script helps you to do 1 and 3. Steps 2 might be added at a later stage in
+There are scripts to do 1 and 3. Steps 2 might be added at a later stage in
 development.
 
 .. image:: img/revmut_overview.png
