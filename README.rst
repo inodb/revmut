@@ -2,7 +2,7 @@
   :target: https://travis-ci.org/inodb/revmut
 REVertant MUTation find & verify (REVMUT)
 =========================================
-REVMUT can help to **find** and **verify** putative revertant mutations (PRMs). Common workflow is:
+REVMUT can help to **find** and **verify** putative revertant mutations (PRMs) in DNA sequence data. Common workflow is:
 
 1. **Find** PRMs (deletions of given mutation, indels that restore the reading frame)
 2. **Annotatote** PRMs with Oncotator to get transcript change of putative
