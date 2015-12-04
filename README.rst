@@ -62,7 +62,7 @@ View input/output files:
   
 - `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`_
 - `tests/test_data/oncotator.ins.txt <tests/test_data/oncotator.ins.txt>`_
-- `tests/test_data/oncotator.ins.maf.out.tsv <tests/test_data/oncotator.ins.maf.out.tsv>`_
+- `tests/test_data/oncotator.ins.maf.out.tsv <tests/test_data/output/oncotator.ins.maf.out.tsv>`_
 
 Developers
 ----------
