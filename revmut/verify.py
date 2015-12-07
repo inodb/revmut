@@ -12,15 +12,36 @@ import pyhgvs as hgvs
 from Bio import SeqIO
 
 
+def minimumEditDistance(s1, s2):
+    """Levenshtein distance between two strings from
+    http://rosettacode.org/wiki/Levenshtein_distance"""
+    if len(s1) > len(s2):
+        s1, s2 = s2, s1
+    distances = range(len(s1) + 1)
+    for index2, char2 in enumerate(s2):
+        newDistances = [index2+1]
+        for index1, char1 in enumerate(s1):
+            if char1 == char2:
+                newDistances.append(distances[index1])
+            else:
+                newDistances.append(1 + min((distances[index1],
+                                             distances[index1+1],
+                                             newDistances[-1])))
+        distances = newDistances
+    return distances[-1]
+
+
 class RevertantMutationsInfo(object):
     def __init__(self, transcript_record, hgvs_mut):
         self.record = transcript_record
         self.mut = hgvs_mut
         self.normal_p = self.record.seq.translate(to_stop=True)
         self.mut_p = apply_hgvs(self.record.seq, hgvs_mut).translate(to_stop=True)
+        self.mut_p_distance = minimumEditDistance(self.normal_p, self.mut_p)
         self.revmuts = []
         self.revmuts_pos_adj = []
         self.revmuts_p = []
+        self.revmut_p_distances = []
 
     def add_revmut(self, hgvs_revmut):
         assert(len(self.revmuts) == len(self.revmuts_p))
@@ -28,18 +49,23 @@ class RevertantMutationsInfo(object):
         hgvs_revmut_pos_adj = alter_coords_hgvs_sequential(self.mut, hgvs_revmut)
         self.revmuts_pos_adj += [hgvs_revmut_pos_adj]
         self.revmuts_p += [apply_hgvs(apply_hgvs(self.record.seq, self.mut), hgvs_revmut_pos_adj).translate(to_stop=True)]
+        self.revmut_p_distances += [minimumEditDistance(self.normal_p, self.revmuts_p[-1])]
 
     def to_tsv(self, header=True):
         assert(len(self.revmuts) == len(self.revmuts_p))
         rv = ""
         if header:
-            rv += "mut\trevmut\trevmut_pos_adj\ttranscript\tnormal_protein_length\tmut_protein_length\trevmut_protein_length\n"
-        rv += "\n".join(["\t".join(["{}"]*7).format(self.mut.name.split(":")[1],
-                                                    self.revmuts[i].name.split(":")[1],
-                                                    self.revmuts_pos_adj[i].name.split(":")[1],
-                                                    self.record.id,
+            rv += "mut\trevmut\trevmut_pos_adj\ttranscript\tnormal_protein_length\tmut_protein_length\trevmut_protein_length\tmut_p_distance\trevmut_p_distance\n"
+        rv += "\n".join(["\t".join(["{}"]*9).format(
+                         self.mut.name.split(":")[1],
+                         self.revmuts[i].name.split(":")[1],
+                         self.revmuts_pos_adj[i].name.split(":")[1],
+                         self.record.id,
                          len(self.normal_p), len(self.mut_p),
-                         len(self.revmuts_p[i])) for i in
+                         len(self.revmuts_p[i]),
+                         self.mut_p_distance,
+                         self.revmut_p_distances[i]
+                         ) for i in
                          range(len(self.revmuts))]) + "\n"
         return rv
 
