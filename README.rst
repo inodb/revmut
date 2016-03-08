@@ -1,3 +1,5 @@
+.. image:: https://zenodo.org/badge/14279/inodb/revmut.svg
+   :target: https://zenodo.org/badge/latestdoi/14279/inodb/revmut
 .. image:: https://travis-ci.org/inodb/revmut.svg?branch=master 
   :target: https://travis-ci.org/inodb/revmut
 REVertant MUTation find & verify (REVMUT)
