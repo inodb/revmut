@@ -43,6 +43,24 @@ class RevertantMutationsInfo(object):
         self.revmuts_p = []
         self.revmut_p_distances = []
 
+    def get_revmuts_p_as_fasta(self):
+        rv = ''
+
+        # add original protein
+        rv += '>WT\n{}\n'.format(self.normal_p)
+
+        # mutated protein
+        rv += '>{}\n{}\n'.format(self.mut.name.split(':')[1],
+                                  self.mut_p)
+
+        # add putative revertant proteins
+        for i, p in enumerate(self.revmuts_p):
+            rv += '>{}-{}\n{}\n'.format(self.mut.name.split(':')[1],
+                                        self.revmuts[i].name.split(':')[1],
+                                        p)
+
+        return rv
+
     def add_revmut(self, hgvs_revmut):
         assert(len(self.revmuts) == len(self.revmuts_p))
         self.revmuts += [hgvs_revmut]
@@ -199,7 +217,7 @@ def parse_hgvs_muts_file(hgvs_muts_file, raise_exception=True):
     return hgvs_muts
 
 
-def print_revertant_mutations_info(hgvs_muts_file, revmuts_file, fasta, revmuts_file_format='hgvs', outfile=sys.stdout):
+def print_revertant_mutations_info(hgvs_muts_file, revmuts_file, fasta, revmuts_file_format='hgvs', outfile=sys.stdout, protein_output_fa=None):
     assert(revmuts_file_format in ['hgvs', 'oncotator'])
 
     hgvs_muts = parse_hgvs_muts_file(hgvs_muts_file)
@@ -208,6 +226,9 @@ def print_revertant_mutations_info(hgvs_muts_file, revmuts_file, fasta, revmuts_
     elif revmuts_file_format == 'oncotator':
         ot = oncotator.Oncotator(revmuts_file)
     transcripts = SeqIO.to_dict(SeqIO.parse(fasta, "fasta"))
+
+    if protein_output_fa is not None:
+        p_fileh = open(protein_output_fa, 'w')
 
     print_header = True
     for m in hgvs_muts:
@@ -226,6 +247,8 @@ def print_revertant_mutations_info(hgvs_muts_file, revmuts_file, fasta, revmuts_
 
         if len(rmi) > 0:
             outfile.write(rmi.to_tsv(header=print_header))
+            if protein_output_fa is not None:
+                p_fileh.write(rmi.get_revmuts_p_as_fasta())
             print_header = False
 
 
@@ -242,8 +265,9 @@ def main():
     parser.add_argument("fasta", type=str, help="Fasta file with transcripts")
     parser.add_argument("--version", action='version', version=revmut.__version__)
     parser.add_argument("--revmuts_file_format", type=str, choices=["hgvs", "oncotator"], default="hgvs", help="Set revmuts_file format")
+    parser.add_argument("--protein_output_fa", type=str, default=None, help="Output protein sequence")
     args = parser.parse_args()
-    print_revertant_mutations_info(args.hgvs_muts_file, args.revmuts_file, args.fasta, revmuts_file_format=args.revmuts_file_format, outfile=sys.stdout)
+    print_revertant_mutations_info(args.hgvs_muts_file, args.revmuts_file, args.fasta, revmuts_file_format=args.revmuts_file_format, outfile=sys.stdout, protein_output_fa=args.protein_output_fa)
 
 
 if __name__ == "__main__":
