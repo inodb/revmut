@@ -86,7 +86,7 @@ def alter_coords_hgvs_sequential(h1, h2):
                 h3.cdna_start = hgvs.CDNACoord(coord=h3.cdna_start.coord-len(h1.ref_allele))
                 h3.cdna_end = hgvs.CDNACoord(coord=h3.cdna_end.coord-len(h1.ref_allele))
             else:
-                raise(Exception("Overlapping del not implemented"))
+                raise(Exception("Overlapping del not implemented.\nhgvs1: {}\nhgvs2: {}".format(h1, h2)))
         elif h1.mutation_type == "ins":
             if h1.cdna_start.coord > h2.cdna_end.coord:
                 h3 = hgvs.HGVSName(h2.name)
@@ -130,15 +130,31 @@ def apply_hgvs(seq, h):
             assert(seq[start] == h.ref_allele)
             new_seq = seq[:start] + h.alt_allele + seq[start+1:]
         elif h.mutation_type == "del":
-            assert(seq[start:end+1] == h.ref_allele)
-            new_seq = seq[:start] + seq[end+1:]
+            if seq[start:end+1] == h.ref_allele:
+                new_seq = seq[:start] + seq[end+1:]
+            # off-by-one errors
+            elif seq[start+1:end+2] == h.ref_allele:
+                new_seq = seq[:start+1] + seq[end+2:]
+            elif seq[start-1:end] == h.ref_allele:
+                new_seq = seq[:start-1] + seq[end:]
+            else:
+                raise(Exception("Incorrect bases at hgvs position: {}, transcript +2 context: {}".format(h, seq[start-2:end+2])))
             assert(len(seq) == len(new_seq) + len(h.ref_allele))
         elif h.mutation_type == "ins":
-            new_seq = seq[:start+1] + h.alt_allele + seq[end:]
+            new_seq = seq[:start+1] + h.alt_allele + seq[start+1:]
             assert(len(seq) + len(h.alt_allele) == len(new_seq))
         elif h.mutation_type == "dup":
-            assert(seq[start:end+1] == h.ref_allele)
-            new_seq = seq[:start] + h.alt_allele + seq[end+1:]
+            if seq[start:end+1] == h.ref_allele:
+                new_seq = seq[:start] + h.alt_allele + seq[end+1:]
+            # off-by-one errors
+            elif seq[start+1:end+2] == h.ref_allele:
+                new_seq = seq[:start+1] + h.alt_allele + seq[end+2:]
+                sys.stderr.write("Off-by-one HGVS found, applying anyway: {}\n".format(h))
+            elif seq[start-1:end] == h.ref_allele:
+                new_seq = seq[:start-1] + h.alt_allele + seq[end:]
+                sys.stderr.write("Off-by-one HGVS found, applying anyway: {}\n".format(h))
+            else:
+                raise(Exception("Incorrect bases at hgvs position: {}, transcript +2 context: {}".format(h, seq[start-2:end+2])))
             assert(len(seq) - len(h.ref_allele) + len(h.alt_allele) == len(new_seq))
         elif h.mutation_type == "delins":
             assert(seq[start:end+1] == h.ref_allele)
