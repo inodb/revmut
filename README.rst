@@ -74,6 +74,12 @@ Cell-Free DNA of Therapy-Resistant Breast or Ovarian Cancer.**::
                 tests/test_data/paper/brca1/oncotator.ins.txt \
                 tests/test_data/BRCA_transcripts.fa > tests/test_data/paper/brca1/oncotator.ins.maf.out.tsv
 
+View input/output files:
+  
+- `tests/test_data/paper/brca1/to_be_reverted_mutations.txt <tests/test_data/paper/brca1/to_be_reverted_mutations.txt>`_
+- `tests/test_data/paper/brca1/oncotator.ins.txt <tests/test_data/paper/brca1/oncotator.ins.txt>`_
+- `tests/test_data/paper/brca1/oncotator.ins.maf.out.tsv <tests/test_data/paper/brca1/output/oncotator.ins.maf.out.tsv>`_
+
 A description of the columns in the output format::
 
 	mut = germline mutation
