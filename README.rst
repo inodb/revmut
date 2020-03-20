@@ -64,7 +64,7 @@ View input/output files:
   
 - `tests/test_data/to_be_reverted_mutations.txt <tests/test_data/to_be_reverted_mutations.txt>`_
 - `tests/test_data/oncotator.ins.txt <tests/test_data/oncotator.ins.txt>`_
-- `tests/test_data/oncotator.ins.maf.out.tsv <tests/test_data/output/oncotator.ins.maf.out.tsv>`_
+- `tests/test_data/output/oncotator.ins.maf.out.tsv <tests/test_data/output/oncotator.ins.maf.out.tsv>`_
 
 For an example that includes only reversion mutations try these BRCA1 mutations
 from the paper  **Diverse BRCA1 and BRCA2 Reversion Mutations in Circulating
@@ -72,13 +72,13 @@ Cell-Free DNA of Therapy-Resistant Breast or Ovarian Cancer.**::
 
   revmut-verify tests/test_data/paper/brca1/to_be_reverted_mutations.txt \
                 tests/test_data/paper/brca1/oncotator.ins.txt \
-                tests/test_data/BRCA_transcripts.fa > tests/test_data/paper/brca1/oncotator.ins.maf.out.tsv
+                tests/test_data/BRCA_transcripts.fa > tests/test_data/paper/brca1/output/oncotator.ins.maf.out.tsv
 
 View input/output files:
   
 - `tests/test_data/paper/brca1/to_be_reverted_mutations.txt <tests/test_data/paper/brca1/to_be_reverted_mutations.txt>`_
 - `tests/test_data/paper/brca1/oncotator.ins.txt <tests/test_data/paper/brca1/oncotator.ins.txt>`_
-- `tests/test_data/paper/brca1/oncotator.ins.maf.out.tsv <tests/test_data/paper/brca1/output/oncotator.ins.maf.out.tsv>`_
+- `tests/test_data/paper/brca1/output/oncotator.ins.maf.out.tsv <tests/test_data/paper/brca1/output/oncotator.ins.maf.out.tsv>`_
 
 A description of the columns in the output format::
 
