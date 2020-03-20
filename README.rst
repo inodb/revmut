@@ -66,6 +66,27 @@ View input/output files:
 - `tests/test_data/oncotator.ins.txt <tests/test_data/oncotator.ins.txt>`_
 - `tests/test_data/oncotator.ins.maf.out.tsv <tests/test_data/output/oncotator.ins.maf.out.tsv>`_
 
+For an example that includes only reversion mutations try these BRCA1 mutations
+from the paper  **Diverse BRCA1 and BRCA2 Reversion Mutations in Circulating
+Cell-Free DNA of Therapy-Resistant Breast or Ovarian Cancer.**::
+
+  revmut-verify tests/test_data/paper/brca1/to_be_reverted_mutations.txt \
+                tests/test_data/paper/brca1/oncotator.ins.txt \
+                tests/test_data/BRCA_transcripts.fa > tests/test_data/paper/brca1/oncotator.ins.maf.out.tsv
+
+A description of the columns in the output format::
+
+	mut = germline mutation
+	revmut = potential revertant mutation
+	revmut_pos_adj = the adjusted revertant mutations position after the germline mutation has been applied
+	transcript = the transcript to apply the cdna change to
+	normal_protein_length = the length of the protein when you translate the transcript in amino acids
+	mut_protein_length = how long the protein is after applying the germline mut cdna change and translating
+	revmut_protein_length = how long the protein is after applying the germline mut cdna change followed by the potential revertant mutation cdna change and translating
+	mut_p_distance = number of amino acids that differ between original protein and germline mutated protein
+	revmut_p_distance = number of amino acids that differ between original protein and germline + revertant mutated protein 
+
+
 Developers
 ----------
 Tests

@@ -1,0 +1,4 @@
+mut	revmut	revmut_pos_adj	transcript	normal_protein_length	mut_protein_length	revmut_protein_length	mut_p_distance	revmut_p_distance
+c.68_69delAG	c.85delG	c.85delG	ENST00000357654	1863	38	1862	1825	6
+c.68_69delAG	c.108delC	c.108delC	ENST00000357654	1863	38	1862	1825	14
+c.68_69delAG	c.113delA	c.113delA	ENST00000357654	1863	38	1862	1825	15
